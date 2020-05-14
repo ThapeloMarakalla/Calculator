@@ -50,10 +50,9 @@ def get_operation_choice():
         print('\t3. Multiply')
         print('\t4. Divide')
         print('\t5. Modulus')
-        print('\t6. Exponentiation')
         print('-----------------')
         user_selection = input('Please make a selection: ')
-        if user_selection in (str(x) for x in range(1, 7)):
+        if user_selection in (str(x) for x in range(1, 6)):
             input_ok = True
         else:
             print('Invalid Input (must be 1 - 6)')
@@ -75,12 +74,14 @@ def get_integer_input(message):
     return int(value_as_string)
 
 
+operation = {'1': add, '2': subtract, '3': multiply,
+             '4': divide, '5': modulus}
 finished = False
 while not finished:
     result = 0
     menue_choice = get_operation_choice()
     n1, n2 = get_numbers_from_user()
-    # Select the operation
+    result = operation[menue_choice](n1, n2)
     print('Result:', result)
     print('=================')
     finished = check_if_user_has_finished()

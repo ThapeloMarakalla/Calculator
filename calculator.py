@@ -40,6 +40,7 @@ def check_if_user_has_finished():
             print('Response must be (y/n), please try again')
     return ok_to_finish
 
+
 def get_operation_choice():
     input_ok = False
     while not input_ok:
@@ -52,18 +53,33 @@ def get_operation_choice():
         print('\t6. Exponentiation')
         print('-----------------')
         user_selection = input('Please make a selection: ')
-        if user_selection in (str(x) for x in range(1,7)):
+        if user_selection in (str(x) for x in range(1, 7)):
             input_ok = True
         else:
             print('Invalid Input (must be 1 - 6)')
     print('-----------------')
     return user_selection
 
+
+def get_numbers_from_user():
+    num1 = get_integer_input('Input the first number: ')
+    num2 = get_integer_input('Input the second number: ')
+    return num1, num2
+
+
+def get_integer_input(message):
+    value_as_string = input(message)
+    while not value_as_string.lstrip('-').isnumeric():
+        print('The input must be an integer')
+        value_as_string = input(message)
+    return int(value_as_string)
+
+
 finished = False
 while not finished:
     result = 0
     menue_choice = get_operation_choice()
-    # Get the numbers from the user
+    n1, n2 = get_numbers_from_user()
     # Select the operation
     print('Result:', result)
     print('=================')
